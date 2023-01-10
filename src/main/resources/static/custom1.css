@@ -1,0 +1,52 @@
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+th {
+	background-color: #4caf50;
+	color: white;
+}
+
+label {
+	display: block;
+	margin: 8px 0;
+}
+
+input[type="text"], input[type="submit"] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+}
+
+input[type="submit"] {
+	background-color: #4caf50;
+	color: white;
+	cursor: pointer;
+}
+
+input[type="submit"]:hover {
+	background-color: #a06245;
+}
+
+.complete {
+	background-color: #4caf50;
+	color: white;
+}
+
+.incomplete {
+	background-color: #ff9800;
+	color: white;
+}
