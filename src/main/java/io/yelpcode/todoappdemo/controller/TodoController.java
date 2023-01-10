@@ -35,20 +35,6 @@ public class TodoController {
         return mav;
     }
 
-//    @PostMapping("/todos/update/{id}")
-//    public ModelAndView update(@ModelAttribute("todoForm") TodoForm todoForm, @PathVariable BigInteger id) {
-//        Todo todo = todoRepository.findById(id).orElse(null);
-//        if (todo != null) {
-//            todo.setTitle(todoForm.getTitle());
-//            todo.setDescription(todoForm.getDescription());
-//            todoRepository.save(todo);
-//        }
-//        ModelAndView mav = new ModelAndView();
-//        mav.addObject((TodoForm)todoForm);
-//        mav.setViewName("redirect:/");
-//        return mav;
-//    }
-
     @PostMapping("/todos/toggle/{id}")
     public String toggle( @PathVariable BigInteger id) {
         Todo todo = todoRepository.findById(id).orElse(null);
@@ -64,6 +50,4 @@ public class TodoController {
         todoRepository.deleteById(id);
         return "redirect:/";
     }
-
-
 }

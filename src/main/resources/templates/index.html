@@ -36,14 +36,6 @@
                 <input type="submit" value="Toggle ON" th:value="${todo.complete} ? 'DONE' : 'INCOMPLETE'"/>
             </form>
         </td>
-        <!--
-        <td>
-            <form method="post" action="#" th:action="@{/todos/update/{id}(id=${todo.id})}">
-                <input type="hidden" name="title" th:value="${todo.title}"/>
-                <input type="hidden" name="description" th:value="${todo.description}"/>
-                <input type="submit" value="Update"/>
-            </form>
-        </td>-->
         <td>
             <form method="post" action="/todos/delete">
                 <input type="hidden" name="id" th:value="${todo.id}"/>
