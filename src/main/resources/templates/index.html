@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Todo App</title>
-	<link rel="stylesheet" type="text/css" th:href="@{custom1.css}"/>
+    <title>Todo App</title>
+    <link rel="stylesheet" type="text/css" th:href="@{custom1.css}"/>
 </head>
 <body>
 <h1>Todo List</h1>
 <form method="post" action="/todos/create" th:object="${todoForm}">
-	<label for="title">Title:</label>
-	<input type="text" id="title" name="title" th:field="*{title}"/>
-	<br/>
-	<label for="description">Description:</label>
-	<input type="text" id="description" name="description" th:field="*{description}"/>
-	<br/>
-	<input type="submit" value="Create Todo"/>
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" th:field="*{title}"/>
+    <br/>
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" th:field="*{description}"/>
+    <br/>
+    <input type="submit" value="Create Todo"/>
 </form>
 <table>
-	<thead>
-	<tr>
-		<th>Title</th>
-		<th>Description</th>
-		<th>Completed</th>
-		<th></th>
-		<th></th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr th:each="todo : ${todos}">
-		<td th:text="${todo.title}"></td>
-		<td th:text="${todo.description}"></td>
-		<td>
-			<form method="post" action="/todos/toggle">
-				<input type="hidden" name="id" th:value="${todo.id}"/>
-				<input type="submit" value="Toggle" th:class="${todo.complete} ? 'complete' : 'incomplete'"/>
-			</form>
-		</td>
-		<td>
-			<form method="post" action="#" th:action="@{/todos/update/{id}(id=${todo.id})}" th:object="${todoForm}">
-				<!input type="hidden" th:field="*{id}" th:value="${todo.id}"/>
-				<input type="hidden" id="id" th:field="*{id}" th:value="${todo.id}"/>
-				<input type="hidden"  th:field="*{title}" th:value="${todo.title}"/>
-				<input type="hidden" th:field="*{description}" th:value="${todo.description}"/>
-				<input type="hidden" th:field="*{complete}" th:value="${todo.complete}"/>
-				<input type="submit" value="Update"/>
-			</form>
-		</td>
-		<td>
-			<form method="post" action="/todos/delete">
-				<input type="hidden" name="id" th:value="${todo.id}"/>
-				<input type="submit" value="Delete"/>
-			</form>
-		</td>
-	</tr>
-	</tbody>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Completed</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="todo : ${todos}" th:object="${todoForm}">
+        <td th:text="${todo.title}" th:value="${todo.title}"></td>
+        <td th:text="${todo.description}" th:value="${todo.description}"></td>
+        <td>
+            <form method="post" th:action="@{/todos/toggle/{id}(id=${todo.id})}" >
+                <input type="hidden" name="title" th:value="${todo.title}"/>
+                <input type="hidden" name="description" th:value="${todo.description}"/>
+                <input type="submit" value="Toggle ON" th:value="${todo.complete} ? 'DONE' : 'INCOMPLETE'"/>
+            </form>
+        </td>
+        <!--
+        <td>
+            <form method="post" action="#" th:action="@{/todos/update/{id}(id=${todo.id})}">
+                <input type="hidden" name="title" th:value="${todo.title}"/>
+                <input type="hidden" name="description" th:value="${todo.description}"/>
+                <input type="submit" value="Update"/>
+            </form>
+        </td>-->
+        <td>
+            <form method="post" action="/todos/delete">
+                <input type="hidden" name="id" th:value="${todo.id}"/>
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+        </form>
+    </tr>
+    </tbody>
 </table>
 </body>
 </html>

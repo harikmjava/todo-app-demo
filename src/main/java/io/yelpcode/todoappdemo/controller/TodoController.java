@@ -19,7 +19,6 @@ public class TodoController {
 
     @GetMapping("/")
     public String index(Model model) {
-        //List<Todo> todoList = todoRepository.findAll();
         model.addAttribute("todos", todoRepository.findAll());
         model.addAttribute("todoForm", new TodoForm());
         return "index";
@@ -36,26 +35,22 @@ public class TodoController {
         return mav;
     }
 
-    @PostMapping("/todos/update/{id}")
-    public ModelAndView update(@ModelAttribute("todoForm") TodoForm todoForm, @PathVariable BigInteger id) {
-        Todo todo = todoRepository.findById(id).orElse(null);
-//        todoForm.setDescription(todo.getDescription());
-//        todoForm.setTitle(todo.getTitle());
-//        todoForm.setComplete(todo.isComplete());For now,
-        if (todo != null) {
-            todo.setTitle(todoForm.getTitle());
-            todo.setDescription(todoForm.getDescription());
-            todo.setComplete(todoForm.isComplete());
-            todoRepository.save(todo);
-        }
-        ModelAndView mav = new ModelAndView();
-        mav.addObject((TodoForm)todoForm);
-        mav.setViewName("redirect:/");
-        return mav;
-    }
+//    @PostMapping("/todos/update/{id}")
+//    public ModelAndView update(@ModelAttribute("todoForm") TodoForm todoForm, @PathVariable BigInteger id) {
+//        Todo todo = todoRepository.findById(id).orElse(null);
+//        if (todo != null) {
+//            todo.setTitle(todoForm.getTitle());
+//            todo.setDescription(todoForm.getDescription());
+//            todoRepository.save(todo);
+//        }
+//        ModelAndView mav = new ModelAndView();
+//        mav.addObject((TodoForm)todoForm);
+//        mav.setViewName("redirect:/");
+//        return mav;
+//    }
 
-    @PostMapping("/todos/toggle")
-    public String toggle(@RequestParam BigInteger id) {
+    @PostMapping("/todos/toggle/{id}")
+    public String toggle( @PathVariable BigInteger id) {
         Todo todo = todoRepository.findById(id).orElse(null);
         if (todo != null) {
             todo.setComplete(!todo.isComplete());

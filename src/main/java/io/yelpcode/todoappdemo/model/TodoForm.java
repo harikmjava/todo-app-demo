@@ -1,12 +1,7 @@
 package io.yelpcode.todoappdemo.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.math.BigInteger;
 
-@Getter
-@Setter
 public class TodoForm {
 
     public TodoForm(){}
@@ -22,6 +17,39 @@ public class TodoForm {
     private String title;
     private String description;
     private boolean complete;
+
+
+    public BigInteger getId() {
+        return id;
+    }
+
+    public void setId(BigInteger id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
+    }
 
 
 }
