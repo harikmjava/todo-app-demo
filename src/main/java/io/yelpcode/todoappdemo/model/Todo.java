@@ -17,8 +17,11 @@ public class Todo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private BigInteger id;
     private String title;
+    private String description;
+    private boolean complete;
 
     public String getTitle() {
         return title;
@@ -44,15 +47,22 @@ public class Todo {
         this.complete = complete;
     }
 
-    private String description;
-    private boolean complete;
-
-
     public BigInteger getId() {
         return id;
     }
 
     public void setId(BigInteger id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Todo{");
+        sb.append("id=").append(id);
+        sb.append(", title='").append(title).append('\'');
+        sb.append(", description='").append(description).append('\'');
+        sb.append(", complete=").append(complete);
+        sb.append('}');
+        return sb.toString();
     }
 }
