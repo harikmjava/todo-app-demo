@@ -16,8 +16,7 @@ public class Todo {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private BigInteger id;
     private String title;
     private String description;
@@ -58,7 +57,7 @@ public class Todo {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Todo{");
-        sb.append("id=").append(id);
+        sb.append("id=").append(getId());
         sb.append(", title='").append(title).append('\'');
         sb.append(", description='").append(description).append('\'');
         sb.append(", complete=").append(complete);
