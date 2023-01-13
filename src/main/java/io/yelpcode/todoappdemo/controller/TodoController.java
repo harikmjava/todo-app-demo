@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.math.BigInteger;
 
+
 @Controller
 public class TodoController {
 
@@ -30,13 +31,13 @@ public class TodoController {
         Todo todo1 = todoRepository.save(todo);
         todoForm.setId(todo1.getId());
         ModelAndView mav = new ModelAndView();
-        mav.addObject((TodoForm)todoForm);
+        mav.addObject((TodoForm) todoForm);
         mav.setViewName("redirect:/");
         return mav;
     }
 
     @PostMapping("/todos/toggle/{id}")
-    public String toggle( @PathVariable BigInteger id) {
+    public String toggle(@PathVariable BigInteger id) {
         Todo todo = todoRepository.findById(id).orElse(null);
         if (todo != null) {
             todo.setComplete(!todo.isComplete());
