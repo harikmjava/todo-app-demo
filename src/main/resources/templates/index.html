@@ -9,10 +9,11 @@
 <form method="post" action="/todos/create" th:object="${todoForm}">
     <label for="title">Title:</label>
     <input type="text" id="title" name="title" th:field="*{title}"/>
+    <p th:if="${#fields.hasErrors('title')}" th:errorclass="error" th:errors="*{title}">Title Error</p>
     <br/>
     <label for="description">Description:</label>
     <input type="text" id="description" name="description" th:field="*{description}"/>
-    <br/>
+    <p th:if="${#fields.hasErrors('description')}" th:errorclass="error" th:errors="*{description}">description Error</p>
     <input type="submit" value="Create Todo"/>
 </form>
 <table>
@@ -30,7 +31,7 @@
         <td th:text="${todo.title}" th:value="${todo.title}"></td>
         <td th:text="${todo.description}" th:value="${todo.description}"></td>
         <td>
-            <form method="post" th:action="@{/todos/toggle/{id}(id=${todo.id})}" >
+            <form method="post" th:action="@{/todos/toggle/{id}(id=${todo.id})}">
                 <input type="hidden" name="title" th:value="${todo.title}"/>
                 <input type="hidden" name="description" th:value="${todo.description}"/>
                 <input type="submit" value="Toggle ON" th:value="${todo.complete} ? 'DONE' : 'INCOMPLETE'"/>

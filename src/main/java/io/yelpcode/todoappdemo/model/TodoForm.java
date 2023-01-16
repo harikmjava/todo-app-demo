@@ -1,5 +1,7 @@
 package io.yelpcode.todoappdemo.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigInteger;
 
 public class TodoForm {
@@ -14,10 +16,13 @@ public class TodoForm {
     }
 
     private BigInteger id;
+    @NotNull(message = "title cannot be empty")
+    @Size(min=2, max=250, message="title must be between 2 and 250")
     private String title;
+    @NotNull(message = "description cannot be empty")
+    @Size(min=2, max =250, message="description must be between 2 and 250")
     private String description;
     private boolean complete;
-
 
     public BigInteger getId() {
         return id;
@@ -50,6 +55,5 @@ public class TodoForm {
     public void setComplete(boolean complete) {
         this.complete = complete;
     }
-
 
 }
